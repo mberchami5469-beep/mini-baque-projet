@@ -4,7 +4,7 @@ class Compt{
     protected $solde;
     public static $nb=0;
 
-    public function __construct($solde=Null) {
+    public function __construct($solde=0) {
         $this->solde = $solde;
         $this->code=++static::$nb;
     }
@@ -21,13 +21,19 @@ return  $this->solde ."DH";
 }
 public function deposer($mantant){
     
-     $this->solde += $mantant;
-     return $this->solde;
+    if ($mantant <= 0) {
+            return false;
+        }
+        $this->solde += $mantant;
+        return true;
 
 }
   public function retirer($mantant){
-   $this->solde -= $mantant;
- return $this->solde;
+    if ($mantant <= 0 || $mantant > $this->solde) {
+            return false;
+        }
+        $this->solde -= $mantant;
+        return true;
 }  
 }
 
